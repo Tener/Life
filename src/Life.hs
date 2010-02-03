@@ -34,6 +34,13 @@ window title gameSize displayCB = do
   smallSize <- get windowSize
 
   displayCallback $= displayCB
+  -- uncomment to display turns as fast as possible
+  -- idleCallback $= Just displayCB
+
+  -- this code calls displayCB every 0.5 s.
+  let timerCallback = displayCB >> (addTimerCallback 500 timerCallback)
+  addTimerCallback 500 timerCallback
+
   keyboardMouseCallback $= Just (mkKM smallSize displayCB)
 
   translate (Vector3 (negate 1) (negate 1) (0::GLfloat))
