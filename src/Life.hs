@@ -38,7 +38,7 @@ window title gameSize displayCB = do
   -- idleCallback $= Just displayCB
 
   -- this code calls displayCB every 0.5 s.
-  let timerCallback = displayCB >> (addTimerCallback 500 timerCallback)
+  let timerCallback = displayCB >> addTimerCallback 500 timerCallback
   addTimerCallback 500 timerCallback
 
   keyboardMouseCallback $= Just (mkKM smallSize displayCB)
