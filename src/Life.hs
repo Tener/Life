@@ -8,8 +8,8 @@ import System.Exit
 -- Internal imports
 import LifeMatrix
 import LifeRendering
-import Safe (readMay)
-import Data.Maybe (fromMaybe)
+import Safe (readDef)
+
 
 main :: IO ()
 main = do
@@ -25,7 +25,7 @@ main = do
   mainLoop
 
 getSize :: [String] -> Integer
-getSize [size] = fromMaybe 50 $ readMay size
+getSize [size] = readDef 50 size
 getSize _ = 50
 
 window :: String -> Integer -> IO () -> IO ()
